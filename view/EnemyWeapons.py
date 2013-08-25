@@ -63,8 +63,8 @@ class PlasmaShot(AbstractEnemyWeapon):
 
     width = 3
     height = 35
-    acceleration_increase = 3
-    max_forward_acceleration = 20
+    acceleration_increase = 2
+    max_forward_acceleration = 17
     dx = 50
     currDx = 0
     moveRight = True

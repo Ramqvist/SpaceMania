@@ -233,10 +233,81 @@ class FlyingSpaghettiMonster(AbstractEnemy, pygame.sprite.Sprite):
         self.health = 100
         self.accelerationY = accelerationY
         self.color = color
-        self.weaponMAXCooldown = 12
+        self.weaponMAXCooldown = 15
         self.weaponCooldown = random.Random().randint(0, self.weaponMAXCooldown)
         self.laser_sound_effect = pygame.mixer.Sound(os.path.join('sounds', "spacegun01.wav"))
         self.image, self.rect = self.load_image('spaghetti-monster.png', -1)
+        self.rect = pygame.Rect(x, y, self.width, self.height)
+        pygame.sprite.Sprite.__init__(self)
+
+    def setIsHitByWeapon(self, power):
+        self.health -= power
+
+    def isDead(self):
+        return self.health <= 0
+
+    def fireShot(self):
+        self.enemyShotList.append(EnemyWeapons.PlasmaShot(self.screen, random.randint(self.x, self.x+(self.width)), (self.y+self.height/2)))
+        self.weaponCooldown = self.weaponMAXCooldown
+        self.laser_sound_effect.play()
+
+
+
+    def draw(self):
+        if self.hasReachedTarget:
+            if self.moveLeft:
+                if self.currDx >= self.dx:
+                    self.moveLeft = False
+                else:
+                    self.currDx += 3
+                    self.x += 3
+            else:
+                if self.currDx < -self.dx:
+                    self.moveLeft = True
+                else:
+                    self.currDx -= 3
+                    self.x -= 3
+        else:
+            self.y += self.accelerationY
+            self.x += self.accelerationX
+            if self.y > self.targetY:
+                self.hasReachedTarget = True
+
+        if self.weaponCooldown > 0:
+            self.weaponCooldown-= 1
+        else:
+            self.fireShot()
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        #pygame.draw.rect(self.screen, self.color, self.rect, 0)
+
+class KimJongIl(AbstractEnemy, pygame.sprite.Sprite):
+
+    enemyShotList = []
+    dx = 130
+    currDx = 0
+    moveLeft = True
+    hasReachedTarget = False
+
+    def __init__(self, screen, x, y, accelerationY, color, enemyShotList):
+        self.enemyShotList = enemyShotList
+        self.width = 310
+        self.height = 357
+        self.screen = screen
+        self.x = x
+        self.y = y
+        self.screenWidth = screen.get_width()
+        self.screenHeight = screen.get_height()
+        self.targetY = self.screenHeight/20
+        self.img = 0
+        self.health = 100
+        self.accelerationY = accelerationY
+        self.color = color
+        self.weaponMAXCooldown = 15
+        self.weaponCooldown = random.Random().randint(0, self.weaponMAXCooldown)
+        self.laser_sound_effect = pygame.mixer.Sound(os.path.join('sounds', "spacegun01.wav"))
+        self.image, self.rect = self.load_image('kimjong1.png', -1)
+        self.image1, self.rect = self.load_image('kimjong1.png', -1)
+        self.image2, self.rect = self.load_image('kimjong2.png', -1)
         self.rect = pygame.Rect(x, y, self.width, self.height)
         pygame.sprite.Sprite.__init__(self)
 
