@@ -75,7 +75,19 @@ class Initializer:
             pygame.display.flip()
             self.screen.fill(self.blackColor)
 
-            if self.currentView == self.VIEW_MAINMENU:
+            if self.currentView == self.VIEW_HIGHSCORE:
+                if self.highscoreView is not None:
+                    if random.randint(0, 3) == 0:
+                        self.backgroundSteps.append(BackgroundStar(self.screen, random.randint(0, self.screenWidth), -50, 3, 3, 5, 0xFFFFFF))
+                    removeList = []
+                    for step in self.backgroundSteps:
+                        step.draw()
+                        if step.y > self.screenHeight + 50:
+                            removeList.append(step)
+                    for step in removeList:
+                        self.backgroundSteps.remove(step)
+                    self.highscoreView.draw()
+            elif self.currentView == self.VIEW_MAINMENU:
                 if self.leavingMainMenu:
                     if self.drawsLeft > 0:
                         if self.music_volume > 0.0:
@@ -111,9 +123,6 @@ class Initializer:
                     self.drawMainMenu()
             elif self.currentView == self.VIEW_GAMEVIEW:
                 self.drawGameView()
-            elif self.currentView == self.VIEW_HIGHSCORE:
-                if self.highscoreView is not None:
-                    self.highscoreView.draw()
 
             for text in self.flashTexts:
                 if text.isValid():
@@ -188,6 +197,9 @@ class Initializer:
                         if self.currentView == self.VIEW_MAINMENU:
                             self.leaveGame()
                         else:
+                            if self.currentView == self.VIEW_HIGHSCORE:
+                                if self.highscoreView is not None:
+                                    self.highscoreView.onDestroy()
                             self.setView(self.VIEW_MAINMENU)
                     if event.key == K_F11:
                         self.toggle_fullscreen()
@@ -218,10 +230,10 @@ class Initializer:
         label2 = myfont2.render("Welcome to", 1, (255,255,0))
         self.screen.blit(label2, (50, 30))
         myfont3 = pygame.font.Font(os.path.join('fonts', "Roboto-Medium.ttf"), 20)
-        label2 = myfont3.render("'Best game since Wallstreet Tycoon' - B. Gates", 1, (255,255,0))
+        label2 = myfont3.render("'This game is so awesome!'", 1, (255,255,0))
         self.screen.blit(label2, (55, 140))
         myfont3 = pygame.font.Font(os.path.join('fonts', "Roboto-Medium.ttf"), 17)
-        label2 = myfont3.render("SpaceMania Alpha version 0.52", 1, (255,255,0))
+        label2 = myfont3.render("SpaceMania BETA version 0.82", 1, (255,255,0))
         self.screen.blit(label2, (self.screenWidth-300, self.screenHeight-50))
 
         drawingAcceleration = 50
@@ -280,6 +292,7 @@ class Initializer:
         self.setView(self.VIEW_GAMEVIEW)
 
     def onHighScoreClick(self):
+        print "onHighscorclick"
         self.setView(self.VIEW_HIGHSCORE)
 
 
@@ -301,13 +314,15 @@ class Initializer:
             self.btnNewGameTargetX = self.screenWidth/2-175
             self.btnHighscoreTargetX = self.screenWidth/2-175
             self.btnExitGameTargetX = self.screenWidth/2-175
-        if(view == self.VIEW_GAMEVIEW):
+        elif(view == self.VIEW_GAMEVIEW):
             self.drawsLeft = 15
             self.leavingMainMenu = True
             self.btnNewGameTargetX = -500
             self.btnHighscoreTargetX = self.screenWidth + 175
             self.btnExitGameTargetX = -500
-        if(view == self.VIEW_HIGHSCORE):
+        elif(view == self.VIEW_HIGHSCORE):
+            print "Setting View to Highscore"
+            self.currentView = self.VIEW_HIGHSCORE
             self.highscoreView = HighscoreView.HighscoreView(self.screen)
 
     def toggle_fullscreen(self):
