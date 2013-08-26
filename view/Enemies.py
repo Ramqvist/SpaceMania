@@ -280,7 +280,7 @@ class FlyingSpaghettiMonster(AbstractEnemy, pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         #pygame.draw.rect(self.screen, self.color, self.rect, 0)
 
-class KimJongIl(AbstractEnemy, pygame.sprite.Sprite):
+class KimJongUn(AbstractEnemy, pygame.sprite.Sprite):
 
     enemyShotList = []
     dx = 130

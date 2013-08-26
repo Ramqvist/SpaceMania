@@ -37,6 +37,7 @@ class GameView:
 
     def __init__(self, screen):
         self.screen = screen
+        self.currentBoss = 0
         self.screenWidth = screen.get_width()
         self.screenHeight = screen.get_height()
         self.playerShip = PlayerSpaceShip(screen, self.enemies)
@@ -109,6 +110,7 @@ class GameView:
         self.gameMusic.playRandomSong()
         self.allsprites = pygame.sprite.RenderPlain((self.playerShip))
         self.flashTexts = []
+        self.currentBoss = 0
         self.currentPhase = 0
         self.isOnBoss = False
         print "Starting new game"
@@ -314,11 +316,18 @@ class GameView:
 
     def startBossEvent(self):
         self.flashTexts.append(InfoText(self.screen, "BOSS INCOMING!", 120, self.redColor, (self.screenWidth/2)-300, 280, 10, 70))
-        self.flashTexts.append(InfoText(self.screen, "FLYING SPAGHETTI MONSTER", 120, self.redColor, (self.screenWidth/2)-410, 360, 30, 80))
         self.isOnBoss = True
         width = 520
         height = 460
-        self.boss = FlyingSpaghettiMonster(self.screen, self.screenWidth/2-width/2, -height, width, height, 2, self.blueColor, self.enemyShotList)
+        if self.currentBoss == 0:
+            self.flashTexts.append(InfoText(self.screen, "FLYING SPAGHETTI MONSTER", 120, self.redColor, (self.screenWidth/2)-410, 360, 30, 80))
+            self.boss = KimJongUn(self.screen, self.screenWidth/2-width/2, -height, 2, self.blueColor, self.enemyShotList)
+            self.currentBoss += 1
+        elif self.currentBoss == 1:
+            self.flashTexts.append(InfoText(self.screen, "EVIL SPACE KIM JONG UN", 120, self.redColor, (self.screenWidth/2)-410, 360, 30, 80))
+            self.boss = FlyingSpaghettiMonster(self.screen, self.screenWidth/2-width/2, -height, width, height, 2, self.blueColor, self.enemyShotList)
+            self.currentBoss = 0
+
         self.allsprites.add(self.boss)
         #__init__(self, screen, x, y, width, height, accelerationY, color, enemyShotList):
 
@@ -515,8 +524,8 @@ class PlayerSpaceShip(Drawable, pygame.sprite.Sprite):
     def firePlasma(self):
         if self.plasmaReady <= 0:
             self.laser_sound_effect.play()
-            self.playerShots.append(PlasmaShot(self.screen, self.x, self.y+(self.height)))
-            self.playerShots.append(PlasmaShot(self.screen, self.x+(self.width), self.y+(self.height)))
+            self.playerShots.append(PlasmaShot(self.screen, self.x, self.y+(self.height)+20))
+            self.playerShots.append(PlasmaShot(self.screen, self.x+(self.width)-4, self.y+(self.height)+20))
             self.plasmaReady = self.plasmaCooldown
 
     def fireRocket(self, enemies):

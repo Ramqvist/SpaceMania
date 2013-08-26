@@ -4,6 +4,7 @@ import GameView
 from Enemies import *
 import FlashText
 import random
+import HighscoreView
 from pygame import *
 from FlashText import *
 
@@ -29,10 +30,13 @@ class Initializer:
 
     VIEW_MAINMENU = 0
     VIEW_GAMEVIEW = 1
-    VIEW_HIGHSCORE = 1
+    VIEW_HIGHSCORE = 2
 
     leavingMainMenu = False
+    leavingMainMenuForHighscore = False
     leavingGame = False
+
+    highscoreView = None
 
     music_volume = 0.0
 
@@ -83,6 +87,17 @@ class Initializer:
                         self.currentView = self.VIEW_GAMEVIEW
                         self.gameView.startNewGame()
                         self.leavingMainMenu = False
+                elif self.leavingMainMenuForHighscore:
+                    if self.drawsLeft > 0:
+                        if self.music_volume > 0.0:
+                            self.music_volume -= 0.05
+                        pygame.mixer.music.set_volume(self.music_volume)
+                        self.drawMainMenu()
+                        self.drawsLeft -= 1
+                    else:
+                        self.currentView = self.VIEW_GAMEVIEW
+                        self.gameView.startNewGame()
+                        self.leavingMainMenu = False
                 elif self.leavingGame:
                     if self.drawsLeft > 0:
                         if self.music_volume > 0.0:
@@ -96,12 +111,16 @@ class Initializer:
                     self.drawMainMenu()
             elif self.currentView == self.VIEW_GAMEVIEW:
                 self.drawGameView()
+            elif self.currentView == self.VIEW_HIGHSCORE:
+                if self.highscoreView is not None:
+                    self.highscoreView.draw()
 
             for text in self.flashTexts:
                 if text.isValid():
                     text.draw()
                 else:
                     self.flashTexts.remove(text)
+
             keys = pygame.key.get_pressed()
             if keys[K_LEFT]:
                 self.gameView.onLeftPress()
@@ -261,9 +280,13 @@ class Initializer:
         self.setView(self.VIEW_GAMEVIEW)
 
     def onHighScoreClick(self):
-        print "Highscore game"
+        self.setView(self.VIEW_HIGHSCORE)
+
 
     def setView(self, view):
+        """
+        Set the current view to a new one.
+        """
         if(view == self.VIEW_MAINMENU):
             self.isPlaying = True
             #Intro music
@@ -284,8 +307,13 @@ class Initializer:
             self.btnNewGameTargetX = -500
             self.btnHighscoreTargetX = self.screenWidth + 175
             self.btnExitGameTargetX = -500
+        if(view == self.VIEW_HIGHSCORE):
+            self.highscoreView = HighscoreView.HighscoreView(self.screen)
 
     def toggle_fullscreen(self):
+        """
+        Tries to go to fullscreen, might crash the program.
+        """
         screen = pygame.display.get_surface()
         tmp = screen.convert()
         caption = pygame.display.get_caption()

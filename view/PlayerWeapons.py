@@ -31,7 +31,11 @@ class AbstractWeapon(Drawable):
                 return True
         return False
 
+
     def load_image(self, name, colorkey=None):
+        """
+        Loads an image from the data folder and returns it.
+        """
         fullname = os.path.join('data', name)
         try:
             image = pygame.image.load(fullname)
