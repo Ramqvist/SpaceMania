@@ -58,12 +58,13 @@ class AbstractWeapon(Drawable):
         self.updatePosition()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
+    #Update the position of the shot
     def updatePosition(self):
         self.y = self.y + self.acceleration
         if self.acceleration > self.max_forward_acceleration:
             self.acceleration= self.acceleration + self.acceleration_increase
 
-
+#Simple laser shot that travels fast forward
 class PlasmaShot(AbstractWeapon):
 
     width = 3
@@ -86,7 +87,7 @@ class PlasmaShot(AbstractWeapon):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         pygame.draw.rect(self.screen, self.color, self.rect, 0)
 
-
+#A guided shot that seeks out enemies to destroy.
 class RocketShot(AbstractWeapon, pygame.sprite.Sprite):
 
     width = 25
@@ -124,6 +125,7 @@ class RocketShot(AbstractWeapon, pygame.sprite.Sprite):
         self.updatePosition()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
+    #Update the position of the shot
     def updatePosition(self):
         if self.enemyTarget is not None and self.enemyTarget.isValid():
             dx = 0

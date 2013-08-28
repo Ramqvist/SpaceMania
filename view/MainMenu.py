@@ -165,34 +165,28 @@ class Initializer:
                             self.onHighScoreClick()
                      elif self.currentView == self.VIEW_GAMEVIEW:
                         pass
-
                 elif event.type == KEYDOWN:
                     if event.key == K_q:
                         if self.currentView == self.VIEW_GAMEVIEW:
                             self.gameView.onQPress()
-                    elif event.key == K_w:
-                        if self.currentView == self.VIEW_GAMEVIEW:
-                            self.gameView.onWPress()
-                    elif event.key == K_e:
-                        if self.currentView == self.VIEW_GAMEVIEW:
-                            self.gameView.onEPress()
-                    elif event.key == K_r:
-                        if self.currentView == self.VIEW_GAMEVIEW:
-                            self.gameView.onRPress()
-                    elif event.key == K_t:
-                        self.flashTexts.append(FlashText(self.screen, "Godlike!", 20, self.blueColor))
-                    elif event.key == K_y:
-                        self.flashTexts.append(FlashText(self.screen, "Erik is the best", 20, self.whiteColor))
+                            self.gameView.onCharDown(event.unicode)
+                    elif event.key == K_BACKSPACE:
+                        self.gameView.onBackspacePress()
                     elif event.key == K_RIGHT:
                             self.gameView.onRightPress()
                     elif event.key == K_LEFT:
                             self.gameView.onLeftPress()
                     elif event.key == K_SPACE:
                             self.gameView.onSpacePress()
+                            self.gameView.onCharDown(event.unicode)
                     elif event.key == K_LCTRL:
                             self.gameView.onCTRLPress()
-                    if event.key == K_a:
-                        msg = '"A" key pressed'
+                    elif event.key == K_RETURN:
+                            self.gameView.onEnterPress()
+                    elif event.key == K_KP_ENTER:
+                            self.gameView.onEnterPress()
+                    else:
+                        self.gameView.onCharDown(event.unicode)
                     if event.key == K_ESCAPE:
                         if self.currentView == self.VIEW_MAINMENU:
                             self.leaveGame()

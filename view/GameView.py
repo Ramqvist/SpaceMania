@@ -10,7 +10,10 @@ from PlayerWeapons import *
 from Enemies import *
 import progress
 import MusicHandler
+import Highscore
+from Player import *
 
+# Class that draws all the game views, i.e. not in the mainmenu or highscore.
 class GameView:
 
     enemies = []
@@ -27,6 +30,9 @@ class GameView:
 
     currentPhase = 0
 
+    playerName = ""
+    acceptKeys = False
+
     gameMusic = MusicHandler.GameMusic()
 
     whiteColor = pygame.Color(255, 255, 255)
@@ -35,6 +41,7 @@ class GameView:
     blueColor = pygame.Color(0, 0, 255)
     blackColor = pygame.Color(0, 0, 0)
 
+    #Initialize the variables
     def __init__(self, screen):
         self.screen = screen
         self.currentBoss = 0
@@ -43,6 +50,7 @@ class GameView:
         self.playerShip = PlayerSpaceShip(screen, self.enemies)
         self.allsprites = pygame.sprite.RenderPlain()
         self.scoreFont = pygame.font.SysFont("Arial", 30)
+        self.enterNameFont = pygame.font.SysFont("Arial", 40)
         self.healthProgress = progress.TextProgress(pygame.font.Font(os.path.join('fonts', "Roboto-Regular.ttf"), 45), "HEALTH", (255,0,0), (0,0,0))
         self.score = 0
         self.sound_game_over = pygame.mixer.Sound(os.path.join('sounds', "gameover.wav"))
@@ -66,6 +74,7 @@ class GameView:
         enemy = WeakEnemy(self.screen, random.randint(0, self.screenWidth), -50, 70, 36, 2+(self.currentPhase), 0xFFFF00, self.enemyShotList)
         self.enemies.append(enemy)
         self.allsprites.add(enemy)
+
     def addDoubleWeakEnemy(self):
         x = random.randint(0, self.screenWidth/2+100)
         enemy1 = WeakEnemy(self.screen, x, -50, 25, 25, 2+(self.currentPhase), 0xFFFF00, self.enemyShotList)
@@ -113,6 +122,8 @@ class GameView:
         self.currentBoss = 0
         self.currentPhase = 0
         self.isOnBoss = False
+        self.playerName = ""
+        self.acceptKeys = False
         print "Starting new game"
 
     def onGameFinished(self):
@@ -123,20 +134,15 @@ class GameView:
             self.flashTexts.append(InfoText(self.screen, "Game Over", 8000, self.redColor, (self.screenWidth/2)-300, 170, 60, 110))
             self.flashTexts.append(InfoText(self.screen, "Score: " + str(self.score), 8000, self.redColor, (self.screenWidth/2)-150, 280, 60, 70))
             self.flashTexts.append(InfoText(self.screen, "Press Q to restart or Escape to go back", 8000, self.whiteColor, (self.screenWidth/2)-350, self.screenHeight-200, 60, 40))
+            highscore = Highscore.HighscoreHandler()
+            if highscore.canScoreBeInserted(int(self.score)):
+                self.acceptKeys = True
+
             #(screen, text, duration, color, x, y, delay, fontSize):
 
 
     def onQPress(self):
         self.startNewGame()
-
-    def onWPress(self):
-        self.gameMusic.playRandomSong()
-
-    def onEPress(self):
-        pass
-
-    def onRPress(self):
-        self.gameMusic.playRandomSong()
 
     def onRightPress(self):
         if not self.hasExitedGame:
@@ -295,6 +301,10 @@ class GameView:
         self.scoreLabel = self.scoreFont.render("Score: " + str(self.score), 1, (255,255,255))
         self.screen.blit(self.scoreLabel, (self.screenWidth-175, 30))
 
+        if self.acceptKeys:
+            enterNameLabel = self.enterNameFont.render("You entered the highscore! Name: " + str(self.playerName) + "_", 1, (255,255,255))
+            self.screen.blit(enterNameLabel, (self.screenWidth/2-300, 600))
+
         for text in self.flashTexts:
             if text.isValid():
                 text.draw()
@@ -313,6 +323,22 @@ class GameView:
         self.isOnBoss = False
         self.nextPhase()
 
+    def onBackspacePress(self):
+        if self.acceptKeys:
+            self.playerName = self.playerName[:-1]
+
+    def onEnterPress(self):
+        if self.acceptKeys:
+            highscore = Highscore.HighscoreHandler()
+            place = highscore.insertHighscore(int(self.score), self.playerName)
+            self.flashTexts.append(InfoText(self.screen, "Highscore place " + str(place), 8000, self.redColor, (self.screenWidth/2)-200, self.screenHeight-300, 60, 50))
+            self.acceptKeys = False
+
+
+    def onCharDown(self, char):
+        if self.acceptKeys:
+            self.playerName += char
+
 
     def startBossEvent(self):
         self.flashTexts.append(InfoText(self.screen, "BOSS INCOMING!", 120, self.redColor, (self.screenWidth/2)-300, 280, 10, 70))
@@ -320,238 +346,14 @@ class GameView:
         width = 520
         height = 460
         if self.currentBoss == 0:
-            self.flashTexts.append(InfoText(self.screen, "FLYING SPAGHETTI MONSTER", 120, self.redColor, (self.screenWidth/2)-410, 360, 30, 80))
+            self.flashTexts.append(InfoText(self.screen, "KIM JONG UN", 120, self.redColor, (self.screenWidth/2)-410, 360, 30, 80))
             self.boss = KimJongUn(self.screen, self.screenWidth/2-width/2, -height, 2, self.blueColor, self.enemyShotList)
             self.currentBoss += 1
         elif self.currentBoss == 1:
-            self.flashTexts.append(InfoText(self.screen, "EVIL SPACE KIM JONG UN", 120, self.redColor, (self.screenWidth/2)-410, 360, 30, 80))
+            self.flashTexts.append(InfoText(self.screen, "FLYING SPAGHETTI MONSTER", 120, self.redColor, (self.screenWidth/2)-410, 360, 30, 80))
             self.boss = FlyingSpaghettiMonster(self.screen, self.screenWidth/2-width/2, -height, width, height, 2, self.blueColor, self.enemyShotList)
             self.currentBoss = 0
 
         self.allsprites.add(self.boss)
         #__init__(self, screen, x, y, width, height, accelerationY, color, enemyShotList):
 
-
-class Drawable:
-    def draw(self):
-        pass
-
-
-class PlayerSpaceShip(Drawable, pygame.sprite.Sprite):
-
-    max_left_acceleration = -20
-    max_right_acceleration = 20
-
-    max_up_acceleration = -20
-    max_down_acceleration = 20
-
-    acceleration_increase = 2
-    acceleration_decay = 1
-
-    color = 0xFF0000
-
-    INITIAL_HEALTH = 100
-    health = INITIAL_HEALTH
-
-    playerShots = []
-    plasmaCooldown = 12
-    rocketCooldown = 40
-
-    plasmaReady = 0
-    rocketReady = 0
-
-    width = 70
-    height = 53
-    accelerationX = 0
-    accelerationY = 0
-
-    def update(self):
-        pass
-
-    def __init__(self, screen, enemies):
-        self.enemies = enemies
-        self.imageMiddle, self.rect = self.load_image('player.png', -1)
-        self.imageLeft, self.rect = self.load_image('playerLeft.png', -1)
-        self.imageRight, self.rect = self.load_image('playerRight.png', -1)
-        self.image, self.rect = self.load_image('player.png', -1)
-        pygame.sprite.Sprite.__init__(self)
-        self.screen = screen
-        self.screenWidth = screen.get_width()
-        self.screenHeight = screen.get_height()
-        self.laser_sound_effect = pygame.mixer.Sound(os.path.join('sounds', "spacegun10.wav"))
-        self.torpedo_sound_effect = pygame.mixer.Sound(os.path.join('sounds', "spacegun02.wav"))
-        self.explosion_sound_effect = pygame.mixer.Sound(os.path.join('sounds', "action05.wav"))
-        self.reset()
-        self.allsprites = pygame.sprite.RenderPlain()
-
-    def load_image(self, name, colorkey=None):
-        fullname = os.path.join('data', name)
-        try:
-            image = pygame.image.load(fullname)
-        except pygame.error, message:
-            print 'Cannot load image:', name
-            raise SystemExit, message
-        image = image.convert()
-        if colorkey is not None:
-            if colorkey is -1:
-                colorkey = image.get_at((0,0))
-            image.set_colorkey(colorkey, RLEACCEL)
-        return image, image.get_rect()
-
-    def isHitByWeapon(self, object):
-        removeList = []
-        found = False
-        for shot in self.playerShots:
-            if self.overlap2(shot, object):
-                self.playerShots.remove(shot)
-                self.allsprites.remove(shot)
-                self.explosion_sound_effect.play()
-                found = True
-                break
-        for shot in removeList:
-            self.playerShots.remove(shot)
-        return found
-
-    def overlap2(self,first, other):
-        return (first.x <= (other.x+other.width) and other.x <= (first.x+first.width) and first.y <= (other.y+other.height) and other.y <= (first.y+first.height))
-
-    def overlap(self, other):
-        return (self.x <= (other.x+other.width) and other.x <= (self.x+self.width) and self.y <= (other.y+other.height) and other.y <= (self.y+self.height))
-
-    def isHitByShot(self, shot):
-        if self.overlap(shot):
-            self.health -= 5
-            self.accelerationY += 10
-            self.explosion_sound_effect.play()
-            return True
-        return False
-
-
-    def draw(self):
-        if self.accelerationX > 0:
-            self.image = self.imageRight
-        elif self.accelerationX < 0:
-            self.image = self.imageLeft
-        else:
-            self.image = self.imageMiddle
-        self.updatePosition(),
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        if self.rocketReady > 0:
-            self.rocketReady = self.rocketReady - 1
-        if self.plasmaReady > 0:
-            self.plasmaReady = self.plasmaReady - 1
-        for shot in self.playerShots:
-            shot.draw()
-
-
-        self.allsprites.update()
-        self.allsprites.draw(self.screen)
-        #pygame.draw.rect(self.screen, self.color, self.rect, 0)
-
-    def updatePosition(self):
-        if (self.x+self.accelerationX+self.width) > self.screenWidth:
-            self.x = self.screenWidth-self.width
-            self.accelerationX = -(self.accelerationX*1.5)
-        elif (self.x+self.accelerationX) < 0:
-            self.x = 0
-            self.accelerationX = -(self.accelerationX*1.5)
-        else:
-            self.x = self.x + self.accelerationX
-
-        if (self.y+self.accelerationY+self.height) > self.screenHeight:
-            self.y = self.screenHeight-self.height
-            self.accelerationY = -(self.accelerationY*1.5)
-        elif (self.y+self.accelerationY) < 0:
-            self.y = 0
-            self.accelerationY = -(self.accelerationY*1.5)
-        else:
-            self.y = self.y + self.accelerationY
-
-        if self.accelerationX > 0:
-            if (self.accelerationX - self.acceleration_decay) < 0:
-                self.accelerationX = 0
-            else:
-                self.accelerationX = self.accelerationX - self.acceleration_decay
-        elif self.accelerationX < 0:
-            if (self.accelerationX + self.acceleration_decay) > 0:
-                self.accelerationX = 0
-            else:
-                self.accelerationX+=self.acceleration_decay
-
-        if self.accelerationY > 0:
-            if (self.accelerationY - self.acceleration_decay) < 0:
-                self.accelerationY = 0
-            else:
-                self.accelerationY = self.accelerationY - self.acceleration_decay
-        elif self.accelerationY < 0:
-            if (self.accelerationY + self.acceleration_decay) > 0:
-                self.accelerationY = 0
-            else:
-                self.accelerationY+=self.acceleration_decay
-
-        #Scale down to max acceleration
-        if self.accelerationX > self.max_right_acceleration*1.5:
-            self.accelerationX = self.max_right_acceleration
-        elif self.accelerationX < self.max_left_acceleration*1.5:
-            self.accelerationX = self.max_left_acceleration
-
-        if self.accelerationY > self.max_down_acceleration*1.5:
-            self.accelerationY = self.max_down_acceleration
-        elif self.accelerationY < self.max_up_acceleration*1.5:
-            self.accelerationY = self.max_up_acceleration
-
-    def moveUp(self):
-        if self.accelerationY > self.max_up_acceleration:
-            self.accelerationY = self.accelerationY - self.acceleration_increase
-
-    def moveDown(self):
-        if self.accelerationY < self.max_down_acceleration:
-            self.accelerationY= self.accelerationY + self.acceleration_increase
-
-    def moveLeft(self):
-        if self.accelerationX > self.max_left_acceleration:
-            self.accelerationX= self.accelerationX - self.acceleration_increase
-
-    def moveRight(self):
-        if self.accelerationX < self.max_right_acceleration:
-            self.accelerationX= self.accelerationX + self.acceleration_increase
-
-    def reset(self):
-        self.health = self.INITIAL_HEALTH
-        self.y = self.screenHeight - 200
-        self.x = self.screenWidth/2
-
-    def firePlasma(self):
-        if self.plasmaReady <= 0:
-            self.laser_sound_effect.play()
-            self.playerShots.append(PlasmaShot(self.screen, self.x, self.y+(self.height)+20))
-            self.playerShots.append(PlasmaShot(self.screen, self.x+(self.width)-4, self.y+(self.height)+20))
-            self.plasmaReady = self.plasmaCooldown
-
-    def fireRocket(self, enemies):
-        if self.rocketReady <= 0:
-            self.torpedo_sound_effect.play()
-            rocket = RocketShot(self.screen, self.x+(self.width/2), self.y+(self.height/2), enemies)
-            self.playerShots.append(rocket)
-            self.allsprites.add(rocket)
-            self.rocketReady = self.rocketCooldown
-
-    def isPositionInside(self, x, y):
-        if y > self.y and y < self.y+self.height:
-            if x > self.x and x < self.x+self.width:
-                return True
-        return False
-
-    def checkBossHit(self, object):
-        removeList = []
-        found = False
-        for shot in self.playerShots:
-            if self.overlap2(shot, object):
-                self.playerShots.remove(shot)
-                self.allsprites.remove(shot)
-                self.explosion_sound_effect.play()
-                found = True
-                break
-        for shot in removeList:
-            self.playerShots.remove(shot)
-        return found
