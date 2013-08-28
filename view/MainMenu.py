@@ -8,13 +8,16 @@ import HighscoreView
 from pygame import *
 from FlashText import *
 
+
+#Main class for the Game
 class Initializer:
     fpsClock = pygame.time.Clock()
     # Center window on screen #
     os.environ['SDL_VIDEO_CENTERED'] = '1'
     pygame.init()
-    screenWidth = 1800
-    screenHeight = 900
+    #Width and heigh for the game, change to get larget window!
+    screenWidth = 1300
+    screenHeight = 700
     screen = pygame.display.set_mode((screenWidth, screenHeight))
     pygame.display.set_caption('SpaceMania')
     mousex, mousey = 0, 0
@@ -50,10 +53,12 @@ class Initializer:
 
     flashTexts = []
     backgroundSteps = []
+    #Place background stars at random positions.
     for n in range(0, screenWidth/20):
             backgroundSteps.append(BackgroundStar(screen, random.randint(0, screenWidth), random.randint(0, screenHeight), 3, 3, 5, 0xFFFFFF))
+
+    #Initialize the class
     def __init__(self):
-        print "Hello world"
         self.btnStartGame = Buttons.Button()
         self.btnHighscore = Buttons.Button()
         self.btnExit = Buttons.Button()
@@ -71,6 +76,7 @@ class Initializer:
         pygame.mixer.init()
         self.button_sound_effect = pygame.mixer.Sound(os.path.join('sounds', "beep04.wav"))
 
+        #Main loop, 60 fps
         while True:
             pygame.display.flip()
             self.screen.fill(self.blackColor)

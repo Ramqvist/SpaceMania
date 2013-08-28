@@ -29,7 +29,7 @@ class PlayerSpaceShip(Drawable, pygame.sprite.Sprite):
 
     playerShots = []
     plasmaCooldown = 12
-    rocketCooldown = 40
+    rocketCooldown = 60
 
     plasmaReady = 0
     rocketReady = 0
@@ -93,7 +93,7 @@ class PlayerSpaceShip(Drawable, pygame.sprite.Sprite):
 
     def isHitByShot(self, shot):
         if self.overlap(shot):
-            self.health -= 5
+            self.health -= 3
             self.accelerationY += 10
             self.explosion_sound_effect.play()
             return True

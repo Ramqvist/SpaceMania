@@ -14,7 +14,7 @@ class HighscoreHandler:
         counter = 1
         for (score, name) in scoreList:
             if int(newScore) > int(score):
-                scoreList.insert(counter, ("\n" + str(newScore), playerName + "\n"))
+                scoreList.insert(counter-1, ("\n" + str(newScore), playerName + "\n"))
                 if len(scoreList) > 10:
                     scoreList.pop(10)
                 self.dumpHighscoreList(scoreList)
@@ -31,16 +31,21 @@ class HighscoreHandler:
         if(len(scoreList) < 10):
             return True
         for (score, name) in scoreList:
-            if int(newScore) > int(score):
-                return True
+            try:
+                if int(newScore) > int(score):
+                    return True
+            except ValueError:
+                continue
         return False
 
     #Gets the highscore list as a pair of (score, name)
     def getHighscoreList(self):
         resultList = []
-        file = open('Highscores.txt', 'r')
+        try:
+            file = open('Highscores.txt', 'r')
+        except IOError:
+            return resultList
         for line in file:
-            print line
             splittedList = line.split(":", 1)
             if len(splittedList) == 2:
                 resultList.append((splittedList[0], splittedList[1]))
@@ -52,5 +57,4 @@ class HighscoreHandler:
         file = open('Highscores.txt', 'w+')
         for (score, name) in highscoreList:
             file.write(str(score) + ":" + name)
-            print "Dumping score name: " + name
         file.close()

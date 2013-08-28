@@ -11,20 +11,20 @@
     <file path="/Example.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1374877175794" ignored="false" />
     <file path="$PROJECT_DIR$/../Bildspelare/ImagePlay.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1375179844643" ignored="false" />
     <file path="/ImagePlay.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1375179831870" ignored="false" />
-    <file path="/GameView.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377721975685" ignored="false" />
-    <file path="/MainMenu.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377719818231" ignored="false" />
+    <file path="/GameView.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377724404971" ignored="false" />
+    <file path="/MainMenu.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377724664224" ignored="false" />
     <file path="/FlashText.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1376905489106" ignored="false" />
     <file path="$USER_HOME$/PycharmProjects/Python Labbar/GuiGuessingGame.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1376223839924" ignored="false" />
     <file path="/GuiGuessingGame.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1376223838472" ignored="false" />
     <file path="/Buttons.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1375871144081" ignored="false" />
     <file path="/constants.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377719568666" ignored="false" />
-    <file path="/MusicHandler.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1376592216711" ignored="false" />
-    <file path="/EnemyWeapons.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1376476500386" ignored="false" />
-    <file path="/Enemies.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377513130175" ignored="false" />
+    <file path="/MusicHandler.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377725197544" ignored="false" />
+    <file path="/EnemyWeapons.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377724462714" ignored="false" />
+    <file path="/Enemies.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377724568465" ignored="false" />
     <file path="/progress.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1376574950512" ignored="false" />
     <file path="/PlayerWeapons.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377720918816" ignored="false" />
-    <file path="/Highscore.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377722085380" ignored="false" />
-    <file path="/HighscoreView.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377720405811" ignored="false" />
+    <file path="/Highscore.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377723637643" ignored="false" />
+    <file path="/HighscoreView.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377723479296" ignored="false" />
     <file path="/surface.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377547518920" ignored="false" />
     <file path="/Player.py" changelist="2f881ae7-76c4-4ba3-bfcd-02dc2e39f7f2" time="1377720524043" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,19 +49,17 @@
       <file leaf-file-name="MainMenu.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/MainMenu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="55" selection-start="7722" selection-end="7722" vertical-scroll-proportion="0.0">
+            <state line="43" column="4" selection-start="1145" selection-end="1145" vertical-scroll-proportion="-5.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HighscoreView.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/HighscoreView.py">
+      <file leaf-file-name="MusicHandler.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/view/MusicHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="3" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#20#36#0" expanded="true" />
-              </folding>
+            <state line="23" column="42" selection-start="1034" selection-end="1034" vertical-scroll-proportion="0.5105105">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,7 +67,7 @@
       <file leaf-file-name="GameView.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/GameView.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="333" column="135" selection-start="13464" selection-end="13464" vertical-scroll-proportion="0.0">
+            <state line="43" column="21" selection-start="891" selection-end="892" vertical-scroll-proportion="-3.9215686">
               <folding />
             </state>
           </provider>
@@ -78,7 +76,7 @@
       <file leaf-file-name="Player.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/Player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="31" selection-start="1885" selection-end="1885" vertical-scroll-proportion="0.0">
+            <state line="95" column="28" selection-start="3001" selection-end="3001" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#21#34#0" expanded="true" />
               </folding>
@@ -86,19 +84,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Highscore.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Highscore.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/Highscore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="30" selection-start="676" selection-end="676" vertical-scroll-proportion="0.5105105">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__builtin__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3246" column="8" selection-start="110785" selection-end="110785" vertical-scroll-proportion="0.0">
+            <state line="49" column="38" selection-start="1651" selection-end="1651" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -116,7 +105,7 @@
       <file leaf-file-name="Enemies.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/Enemies.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="324" column="0" selection-start="10776" selection-end="10776" vertical-scroll-proportion="0.0">
+            <state line="354" column="27" selection-start="11646" selection-end="11646" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -125,7 +114,7 @@
       <file leaf-file-name="EnemyWeapons.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/EnemyWeapons.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="20" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
+            <state line="32" column="53" selection-start="757" selection-end="757" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -148,15 +137,15 @@
         <option value="$PROJECT_DIR$/view/progress.py" />
         <option value="$PROJECT_DIR$/view/FlashText.py" />
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py" />
-        <option value="$PROJECT_DIR$/view/MusicHandler.py" />
+        <option value="$PROJECT_DIR$/view/PlayerWeapons.py" />
+        <option value="$PROJECT_DIR$/view/HighscoreView.py" />
         <option value="$PROJECT_DIR$/view/EnemyWeapons.py" />
         <option value="$PROJECT_DIR$/view/Enemies.py" />
-        <option value="$PROJECT_DIR$/view/MainMenu.py" />
-        <option value="$PROJECT_DIR$/view/HighscoreView.py" />
-        <option value="$PROJECT_DIR$/view/Player.py" />
-        <option value="$PROJECT_DIR$/view/PlayerWeapons.py" />
-        <option value="$PROJECT_DIR$/view/GameView.py" />
         <option value="$PROJECT_DIR$/view/Highscore.py" />
+        <option value="$PROJECT_DIR$/view/GameView.py" />
+        <option value="$PROJECT_DIR$/view/Player.py" />
+        <option value="$PROJECT_DIR$/view/MainMenu.py" />
+        <option value="$PROJECT_DIR$/view/MusicHandler.py" />
       </list>
     </option>
   </component>
@@ -456,7 +445,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19933185" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22939867" sideWeight="0.48932764" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22939867" sideWeight="0.51013875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22939867" sideWeight="0.51013875" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -537,11 +526,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/view/MusicHandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="29" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/random.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="839" column="14" selection-start="30004" selection-end="30004" vertical-scroll-proportion="0.0" />
@@ -559,23 +543,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/view/EnemyWeapons.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="20" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/pygame/surface.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="358" column="41" selection-start="11483" selection-end="11483" vertical-scroll-proportion="0.46248084" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/Enemies.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="324" column="0" selection-start="10776" selection-end="10776" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/pygame/constants.py">
@@ -592,6 +562,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3246" column="8" selection-start="110785" selection-end="110785" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/view/PlayerWeapons.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="0" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
@@ -599,9 +576,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/view/HighscoreView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="55" selection-start="545" selection-end="545" vertical-scroll-proportion="0.536036">
+          <folding>
+            <element signature="e#20#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/EnemyWeapons.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="53" selection-start="757" selection-end="757" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/Enemies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="354" column="27" selection-start="11646" selection-end="11646" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/Highscore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="38" selection-start="1651" selection-end="1651" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/view/Player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="31" selection-start="1885" selection-end="1885" vertical-scroll-proportion="0.0">
+        <state line="95" column="28" selection-start="3001" selection-end="3001" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#21#34#0" expanded="true" />
           </folding>
@@ -610,37 +617,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/MainMenu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="55" selection-start="7722" selection-end="7722" vertical-scroll-proportion="0.0">
+        <state line="43" column="4" selection-start="1145" selection-end="1145" vertical-scroll-proportion="-5.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/view/GameView.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="333" column="135" selection-start="13464" selection-end="13464" vertical-scroll-proportion="0.0">
+        <state line="43" column="21" selection-start="891" selection-end="892" vertical-scroll-proportion="-3.9215686">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py">
+    <entry file="file://$PROJECT_DIR$/view/MusicHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3246" column="8" selection-start="110785" selection-end="110785" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/HighscoreView.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="3" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#20#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/view/Highscore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="30" selection-start="676" selection-end="676" vertical-scroll-proportion="0.5105105">
+        <state line="23" column="42" selection-start="1034" selection-end="1034" vertical-scroll-proportion="0.5105105">
           <folding />
         </state>
       </provider>

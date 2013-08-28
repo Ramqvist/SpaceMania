@@ -30,6 +30,7 @@ class AbstractEnemyWeapon(Drawable):
                 return True
         return False
 
+    #Method for loading an image from the data folder
     def load_image(self, name, colorkey=None):
         fullname = os.path.join('data', name)
         try:
@@ -58,7 +59,7 @@ class AbstractEnemyWeapon(Drawable):
         if self.acceleration > self.max_forward_acceleration:
             self.acceleration= self.acceleration + self.acceleration_increase
 
-
+#Standard weak plasma shot.
 class PlasmaShot(AbstractEnemyWeapon):
 
     width = 3

@@ -280,6 +280,8 @@ class FlyingSpaghettiMonster(AbstractEnemy, pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         #pygame.draw.rect(self.screen, self.color, self.rect, 0)
 
+
+#The secound boss Kim Jong Un
 class KimJongUn(AbstractEnemy, pygame.sprite.Sprite):
 
     enemyShotList = []
@@ -288,6 +290,7 @@ class KimJongUn(AbstractEnemy, pygame.sprite.Sprite):
     moveLeft = True
     hasReachedTarget = False
 
+    #Initialize the class
     def __init__(self, screen, x, y, accelerationY, color, enemyShotList):
         self.enemyShotList = enemyShotList
         self.width = 310
@@ -305,8 +308,8 @@ class KimJongUn(AbstractEnemy, pygame.sprite.Sprite):
         self.weaponMAXCooldown = 15
         self.weaponCooldown = random.Random().randint(0, self.weaponMAXCooldown)
         self.laser_sound_effect = pygame.mixer.Sound(os.path.join('sounds', "spacegun01.wav"))
-        self.image, self.rect = self.load_image('kimjong1.png', -1)
-        self.image1, self.rect = self.load_image('kimjong1.png', -1)
+        self.image, self.rect = self.load_image('kimjong1.gif', -1)
+        self.image1, self.rect = self.load_image('kimjong1.gif', -1)
         self.image2, self.rect = self.load_image('kimjong2.png', -1)
         self.rect = pygame.Rect(x, y, self.width, self.height)
         pygame.sprite.Sprite.__init__(self)
@@ -314,16 +317,18 @@ class KimJongUn(AbstractEnemy, pygame.sprite.Sprite):
     def setIsHitByWeapon(self, power):
         self.health -= power
 
+    #Checks if boss is dead.
     def isDead(self):
         return self.health <= 0
 
+    #Fire a shot!
     def fireShot(self):
         self.enemyShotList.append(EnemyWeapons.PlasmaShot(self.screen, random.randint(self.x, self.x+(self.width)), (self.y+self.height/2)))
         self.weaponCooldown = self.weaponMAXCooldown
         self.laser_sound_effect.play()
 
 
-
+    #Draw the boss
     def draw(self):
         if self.hasReachedTarget:
             if self.moveLeft:

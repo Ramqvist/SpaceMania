@@ -273,7 +273,7 @@ class GameView:
 
             if self.playerShip.health < 0:
                 self.onGameFinished()
-                timeLeftLabel = self.scoreFont.render("Time left: 0", 1, (255,255,255))
+                timeLeftLabel = self.scoreFont.render("Next boss in: 0", 1, (255,255,255))
 
             if self.isOnBoss:
                 if self.boss.isDead():

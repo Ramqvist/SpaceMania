@@ -35,7 +35,7 @@ class HighscoreView:
         y = 173
         counter = 1
         for (score, name) in self.highscoreList:
-            label = myfont.render(str(counter) + ". " + str(score) + " - " + str(name), 1, (255,255,255))
+            label = myfont.render(str(counter) + ".  \t" + str(score) + " -  \t" + str(name), 1, (255,255,255))
             self.screen.blit(label, (135, y))
             y = y + 50
             counter = counter + 1
